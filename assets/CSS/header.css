@@ -1,0 +1,42 @@
+header {
+    display: flex;
+    justify-content:space-between;
+}
+
+#logo {
+    width: 190px;
+}
+
+li {
+    display: flex;
+}
+
+#pierre {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 400px;
+    color: 1E1E1E;
+    font-size: 1.4em;
+
+
+}
+#logos {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 190px;
+
+}
+
+#loupe {
+    width: 50px;
+}
+
+#panier {
+    width: 50px;
+}
+
+#login {
+    width: 67px;
+}
