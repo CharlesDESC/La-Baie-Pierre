@@ -52,21 +52,6 @@ func apiHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 }
 
-func registerHandler(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Access-Control-Allow-Origin", "*")
-	w.Header().Set("Content-Type", "application/json")
-
-	//Permet de recuperer la requete en frond pour la mettre dasn la db
-
-	// var register User
-	// decoder := json.NewDecoder(r.Body)
-	// decoder.Decode(&register)
-	// fmt.Println(register)
-
-	// insert := `INSERT INTO bobato.session (USR_ID, TOKEN) VALUES (` + strconv.Itoa(session.UserID) + `,"` + session.Token + `");`
-
-}
-
 func getPierres() []Pierre {
 	var query, _ = db.Query("SELECT * FROM labaiepierre.pierre")
 	var pierres []Pierre
@@ -76,6 +61,45 @@ func getPierres() []Pierre {
 		pierres = append(pierres, pierre)
 	}
 	return pierres
+}
+
+func registerHandler(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	w.Header().Set("Content-Type", "application/json")
+
+	//Permet de recuperer la requete en frond pour la mettre dasn la db
+
+	var register User
+	decoder := json.NewDecoder(r.Body)
+	decoder.Decode(&register)
+	fmt.Println(register)
+	insert := `INSERT INTO labaiepierre.user (NAME, FIRSTNAME, PASSWORD, EMAIL, BIRTHDAY) VALUES ("` + register.Name + `","` + register.Firstname + `","` + register.Password + `","` + register.Email + `","` + register.Birthday + `")`
+	db.Query(insert)
+	selectID := `SELECT ID FROM labaiepierre.user WHERE EMAIL="` + register.Email + `"`
+	IDUsr := db.QueryRow(selectID)
+	IDUsr.Scan(&register.ID)
+	fmt.Println(register.ID)
+	insertCart := `INSERT INTO labaiepierre.cart (USER_ID) VALUES ("` + strconv.Itoa(register.ID) + `")`
+	db.Query(insertCart)
+	selectCartID := `SELECT ID FROM labaiepierre.cart WHERE USER_ID="` + strconv.Itoa(register.ID) + `"`
+	IDCart := db.QueryRow(selectCartID)
+	IDCart.Scan(&register.Cart_ID)
+	fmt.Println(register.Cart_ID)
+	insertCartID := `UPDATE labaiepierre.user SET CART_ID="` + strconv.Itoa(register.Cart_ID) + `" WHERE ID="` + strconv.Itoa(register.ID) + `"`
+	db.Query(insertCartID)
+}
+
+func loginHandler(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	w.Header().Set("Content-Type", "application/json")
+	var user User
+	decoder := json.NewDecoder(r.Body)
+	decoder.Decode(&user)
+	emailVar := `SELECT ID, NAME, FIRSTNAME, PASSWORD, EMAIL, CART_ID, BIRTHDAY FROM labaiepierre.user WHERE EMAIL="` + user.Email + `" AND PASSWORD="` + user.Password + `"`
+	fmt.Println(emailVar)
+	var getRaw = db.QueryRow(emailVar)
+	getRaw.Scan(&user.ID, &user.Name, &user.Firstname, &user.Password, &user.Email, &user.Cart_ID, &user.Birthday)
+	fmt.Println(user)
 }
 
 func pierresHandler(w http.ResponseWriter, r *http.Request) {
@@ -112,7 +136,7 @@ func userHandler(w http.ResponseWriter, r *http.Request) {
 func main() {
 	http.HandleFunc("/api/", apiHandler)
 	http.HandleFunc("/api/register", registerHandler)
-	// http.HandleFunc("/api/login", test)
+	http.HandleFunc("/api/login", loginHandler)
 	http.HandleFunc("/api/pierre", pierresHandler)
 	http.HandleFunc("/api/pierre/", pierreHandler)
 	// http.HandleFunc("/api/cart", test)
