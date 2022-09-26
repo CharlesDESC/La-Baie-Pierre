@@ -102,6 +102,15 @@ func loginHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Println(user)
 }
 
+// func cartHandler(w http.ResponseWriter, r *http.Request) {
+// 	w.Header().Set("Access-Control-Allow-Origin", "*")
+// 	w.Header().Set("Content-Type", "application/json")
+// 	var pierre Pierre
+// 	decoder := json.NewDecoder(r.Body)
+// 	decoder.Decode(&pierre)
+// 	pierreVar := `INSERT INTO labaiepierre.cart  (USER_ID, PIERRE_ID) VALUES ("` + strconv.Itoa(pierre.ID) + `")`
+// }
+
 func pierresHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Access-Control-Allow-Origin", "*")
 	w.Header().Set("Content-Type", "application/json")
@@ -139,7 +148,7 @@ func main() {
 	http.HandleFunc("/api/login", loginHandler)
 	http.HandleFunc("/api/pierre", pierresHandler)
 	http.HandleFunc("/api/pierre/", pierreHandler)
-	// http.HandleFunc("/api/cart", test)
+	http.HandleFunc("/api/cart", cartHandler)
 	http.HandleFunc("/api/user", userHandler)
 
 	log.Fatal(http.ListenAndServe(":55", nil))
