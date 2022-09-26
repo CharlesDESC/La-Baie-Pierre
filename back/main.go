@@ -148,7 +148,7 @@ func main() {
 	http.HandleFunc("/api/login", loginHandler)
 	http.HandleFunc("/api/pierre", pierresHandler)
 	http.HandleFunc("/api/pierre/", pierreHandler)
-	http.HandleFunc("/api/cart", cartHandler)
+	// http.HandleFunc("/api/cart", cartHandler)
 	http.HandleFunc("/api/user", userHandler)
 
 	log.Fatal(http.ListenAndServe(":55", nil))
