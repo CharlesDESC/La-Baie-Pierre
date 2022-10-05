@@ -1,7 +1,7 @@
 footer {
     position: absolute;
     background-color: #1E1E1E;
-    height: 170px;
+    height: 140px;
     bottom: 0;
     right: 0;
     left: 0;
@@ -14,11 +14,11 @@ footer {
     height: 100%;
     justify-content:space-between;
     color: white;
+    align-items: center;
 }
 
 h1 {
     font-size: 1.3em;
-    margin-top: 30px;
     text-decoration: underline;
     margin-bottom: 5px;
 }
