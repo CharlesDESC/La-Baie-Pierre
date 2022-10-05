@@ -24,13 +24,11 @@ type User struct {
 	Cart_ID   int    `json:"cart_ID"`
 	Birthday  string `json:"birthday"`
 }
-
 type Session struct {
 	UserID   int
 	UserName string
 	Token    string
 }
-
 type Pierre struct {
 	ID                 int    `json:"ID"`
 	Pierre_name        string `json:"pierre_name"`
