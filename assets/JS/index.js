@@ -1,17 +1,3 @@
-
-
-
-
-// const getPierres = await fetch('http://localhost:55/api/pierre/1', {
-// method: 'GET'
-// })
-// const json = await getPierres.json()
-// console.log(json)
-
-var pouetos =  [];
-
-
-
 fetch('http://localhost:55/api/pierre', {
     method: 'GET'
     })
@@ -20,16 +6,12 @@ fetch('http://localhost:55/api/pierre', {
         for (let i = 0; i < data.length; i++) {
             console.log(data[i])
             var createDiv = document.createElement('div');
-            createDiv.id =i;
+            createDiv.id = i;
             createDiv.textContent = data[i].pierre_name;
+
             card.appendChild(createDiv)
         }
     })
-    // .then(data => {
-    //     output.textContent = data;
-    //     console.log(data)
-    // });
-
 
 
 
