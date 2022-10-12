@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,6 +15,7 @@
 
     <title>Document</title>
 </head>
+
 <body>
     <header>
         <a href="./index.html"><img id="logo" src="../assets/IMG/logo_caillou.png" alt=""></a>
@@ -37,7 +39,7 @@
         </li>
         <li id="logos">
             <ul>
-                <a href="./panier.html"><img id="panier" src="../assets/IMG/panier.png" alt=""></a>
+                <a href="./index.html"><img id="panier" src="../assets/IMG/panier.png" alt=""></a>
             </ul>
             <ul>
                 <a href="./login.html"><img id="login" src="../assets/IMG/login.png" alt=""></a>
@@ -46,8 +48,27 @@
     </header>
     <section class="section">
         <div id="container">
+            <div id="member">
+                <h1>Livraison gratuite pour tous les membres</h1>
+                <span>Devenez membre rapidement pour profiter de livraisons rapides et gratuites. <br></span>
+                <a href="./login.html" class="link">Créez un compte</a> <span>ou</span> <a href="./register.html"
+                    class="link">Inscrivez-vous</a>
+            </div>
+            <div class="flex">
+                <div id="recap">
+                    <span>Récapitulatif<br></span>
+                    <span class="left">Sous-total</span>
+                    <span class="right">149.97 €<br></span>
+                    <span class="left">Frais d'expédition</span>
+                    <span class="right">0.00 €<br></span>
+                    <span class="left">Total</span>
+                    <span class="right">149.97 €<br></span>
+                    <input type="submit" value="Paiement">
+                </div>
+            </div>
 
         </div>
+
     </section>
     <footer>
         <div id="footer">
@@ -63,11 +84,11 @@
                     Rejoignez nos réseaux !
                 </h1>
                 <div id="logos_reseau">
-                <img id="insta" src="../assets/IMG/insta-icon-white.png" alt="">
-                <img id="twitter" src="../assets/IMG/twitter-white-icon.png" alt="">
-                <img id="facebook" src="../assets/IMG/facebook_icon_white.png" alt="">
+                    <img id="insta" src="../assets/IMG/insta-icon-white.png" alt="">
+                    <img id="twitter" src="../assets/IMG/twitter-white-icon.png" alt="">
+                    <img id="facebook" src="../assets/IMG/facebook_icon_white.png" alt="">
 
-            </div>
+                </div>
             </div>
             <div id="mail">
                 <h1>Contactez-nous !</h1>
@@ -75,5 +96,7 @@
             </div>
         </div>
     </footer>
+    <script src="../assets/JS/cart.js"></script>
 </body>
+
 </html>

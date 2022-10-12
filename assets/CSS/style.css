@@ -5,3 +5,10 @@ body {
     background-color: #D6E0DA;
     font-family: 'Oswald', sans-serif;
 }
+
+#card {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
