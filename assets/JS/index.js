@@ -41,6 +41,15 @@ fetch('http://localhost:55/api/pierre', {
                 }
                 a = document.createElement('a');
                 a.textContent = "ajouter et consulter le panier";
+                a.onclick = function() {
+                    fetch('http://localhost:55/api/cart', {
+                        method: 'POST',
+                        body: JSON.stringify({
+                            user_ID : parseInt(allCookies[1]),
+                            pierre_ID : data[i].ID
+                        })
+                    })
+                }
                 a.href = "./panier.html";
                 pouet.appendChild(a)
 

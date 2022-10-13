@@ -149,7 +149,7 @@ func cartHandler(w http.ResponseWriter, r *http.Request) {
 	decoder := json.NewDecoder(r.Body)
 	decoder.Decode(&cart)
 	fmt.Println(cart)
-	if cart.User_ID != 0 {
+	if cart.Pierre_ID != 0 {
 		insert := `INSERT INTO labaiepierre.cart (pierre_ID, user_ID) VALUES ("` + strconv.Itoa(cart.Pierre_ID) + `","` + strconv.Itoa(cart.User_ID) + `")`
 		fmt.Println(insert)
 		db.Query(insert)
