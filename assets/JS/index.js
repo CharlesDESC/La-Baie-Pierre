@@ -6,6 +6,7 @@ fetch('http://localhost:55/api/pierre', {
         for (let i = 0; i < data.length; i++) {
             var createDiv = document.createElement('div');
             createDiv.id = i;
+            createDiv.className = "cssCard";
             createDiv.textContent = data[i].pierre_name;
             createDiv.style.backgroundColor = "grey";
             createDiv.style.margin = "10px";
