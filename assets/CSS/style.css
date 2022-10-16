@@ -7,11 +7,93 @@ body {
 }
 
 #card {
-    width: 100%;
     display: flex;
     flex-wrap: wrap;
 }
 
 .cssCard {
-    
+    color: white;
+    display: flex;
+    align-items: center;
+    width: 300px;
+    background-color: #1e1e1e;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+
+.addCart {
+    display: flex;
+}
+
+.addCart input {
+    width: 40px;
+    margin-left: 10px;
+}
+
+span {
+    cursor: pointer;
+}
+
+.minus, .plus{
+    border-radius: 10px;
+    text-decoration: none;
+    background-color: #1e1e1e;
+    color: white;
+    border: solid 1px white;
+    margin: 5px;
+}
+
+#submit {
+    text-decoration: none;
+    color: white;
+    background-color: transparent;
+    border-radius: 5px;
+    border: solid 1px white;
+    padding: 4px;
+    margin: 5px;
+}
+
+.cssCard span {
+    font-weight: 100;
+}
+
+.nameCaillou {
+    font-size: 1.3em;
+}
+
+.cardFlex {
+    display: flex;
+    gap: 200px;
+    flex-wrap: wrap;
+    align-items: stretch;
+}
+
+.grille {
+    max-width: 1300;
+    width: 70%;
+    height: auto;
+    margin: 30px auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 300px);
+    justify-content: center;
+    grid-gap: 30px;
+}
+
+.grid-item {
+    width: 300px;
+    height: 200px;
+    background-color: #1e1e1e;
+    border-radius: 12px;
+    transition: all 0.5s ease 0s;
+}
+
+
+img {
+    max-width: 150px;
+    padding-top: 20px;
+}
+
+.grid-item:hover {
+    transform: scale(1.1);
 }
