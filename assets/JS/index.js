@@ -151,13 +151,16 @@ fetch('http://localhost:55/api/pierre', {
                 createDiv = document.createElement('button');
                 createDiv.textContent = "ajouter et consulter le panier";
                 createDiv.onclick = function () {
-                    fetch('http://localhost:55/api/cart', {
-                        method: 'POST',
-                        body: JSON.stringify({
-                            user_ID: parseInt(allCookies[1]),
-                            pierre_ID: data[i].ID
+                    for (let x = 0; x < nb_pierre[i]; x++) {
+                        fetch('http://localhost:55/api/cart', {
+                            method: 'POST',
+                            body: JSON.stringify({
+                                user_ID: parseInt(allCookies[1]),
+                                pierre_ID: data[i].ID
+                            })
                         })
-                    })
+                        console.log(x)
+                    }
                     window.location = "./panier.html";
                 }
 
