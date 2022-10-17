@@ -46,9 +46,10 @@ type Avis struct {
 }
 
 type Cart struct {
-	ID        int `json:"ID"`
-	User_ID   int `json:"user_ID"`
-	Pierre_ID int `json:"pierre_ID"`
+	ID           int `json:"ID"`
+	User_ID      int `json:"user_ID"`
+	Pierre_ID    int `json:"pierre_ID"`
+	Pierre_price int `json:"pierre_price"`
 }
 
 //
@@ -150,7 +151,7 @@ func cartHandler(w http.ResponseWriter, r *http.Request) {
 	decoder.Decode(&cart)
 	fmt.Println(cart)
 	if cart.Pierre_ID != 0 {
-		insert := `INSERT INTO labaiepierre.cart (pierre_ID, user_ID) VALUES ("` + strconv.Itoa(cart.Pierre_ID) + `","` + strconv.Itoa(cart.User_ID) + `")`
+		insert := `INSERT INTO labaiepierre.cart (pierre_ID, user_ID, pierre_price) VALUES ("` + strconv.Itoa(cart.Pierre_ID) + `","` + strconv.Itoa(cart.User_ID) + `","` + strconv.Itoa(cart.Pierre_price) + `")`
 		fmt.Println(insert)
 		db.Query(insert)
 	}
@@ -158,7 +159,7 @@ func cartHandler(w http.ResponseWriter, r *http.Request) {
 	var allCart []Cart
 	for query.Next() {
 		var cart Cart
-		query.Scan(&cart.ID, &cart.User_ID, &cart.Pierre_ID)
+		query.Scan(&cart.ID, &cart.User_ID, &cart.Pierre_ID, &cart.Pierre_price)
 		allCart = append(allCart, cart)
 	}
 	fmt.Println(allCart)

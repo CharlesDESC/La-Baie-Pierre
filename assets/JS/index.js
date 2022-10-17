@@ -20,12 +20,22 @@ fetch('http://localhost:55/api/pierre', {
             pouet.appendChild(createDiv)
 
             pouet = document.getElementById('cssCard' + i);
+            createDiv = document.createElement('div');
+            createDiv.className = "cssCard2";
+            createDiv.style.display = "flex";
+            createDiv.id = "cssCard2" + i;
+
+            pouet.appendChild(createDiv)
+
+            pouet = document.getElementById('cssCard2' + i);
             createDiv = document.createElement('img');
             createDiv.className = "img";
+            createDiv.id = "img" + i;
             createDiv.src = "../assets/IMG/cailoux.png";
 
             pouet.appendChild(createDiv)
 
+            pouet = document.getElementById('cssCard' + i);
             createDiv = document.createElement('div');
             createDiv.className = "block";
             createDiv.id = "block" + i;
@@ -47,9 +57,14 @@ fetch('http://localhost:55/api/pierre', {
 
             pouet.appendChild(createDiv)
 
+            createDiv = document.createElement('br');
+            pouet.appendChild(createDiv)
+
+
+
             pouet = document.getElementById('namepriece' + i);
             createDiv = document.createElement('span');
-            createDiv.textContent = data[i].pierre_price;
+            createDiv.textContent = data[i].pierre_price + " €";
 
             pouet.appendChild(createDiv)
 
@@ -121,12 +136,6 @@ fetch('http://localhost:55/api/pierre', {
             createDiv = document.createElement('button');
             createDiv.id = "submit";
 
-
-
-
-
-
-
             let connection = document.getElementById('connection');
 
             if (document.cookie != "") {
@@ -139,7 +148,8 @@ fetch('http://localhost:55/api/pierre', {
                             method: 'POST',
                             body: JSON.stringify({
                                 user_ID: parseInt(allCookies[1]),
-                                pierre_ID: data[i].ID
+                                pierre_ID: data[i].ID,
+                                pierre_price: data[i].pierre_price
                             })
                         })
                         console.log(z)
@@ -156,7 +166,8 @@ fetch('http://localhost:55/api/pierre', {
                             method: 'POST',
                             body: JSON.stringify({
                                 user_ID: parseInt(allCookies[1]),
-                                pierre_ID: data[i].ID
+                                pierre_ID: data[i].ID,
+                                pierre_price: data[i].pierre_price
                             })
                         })
                         console.log(x)
@@ -189,6 +200,26 @@ fetch('http://localhost:55/api/pierre', {
                 pouet.appendChild(createDiv)
             }
         }
+        for (let index = 0; index < data.length; index++) {
+            let card = document.getElementById("cssCard2"+index);
+            let img = document.getElementById("img"+index);
+
+            img.onmouseover = function () {
+                img.style.visibility = "hidden";
+                img.style.position = "relative";
+                let newDiv = document.createElement('div');
+                newDiv.id = "desc";
+                newDiv.style.position = "absolute";
+                newDiv.style.width = "150px"
+                newDiv.textContent = data[index].pierre_description;
+                card.appendChild(newDiv)
+
+            }
+            // img.onmouseout = function () {
+            //     img.style.visibility = "visible";
+            // }
+        }
+        
     })
 
 let allCookies = document.cookie;
