@@ -137,7 +137,7 @@ func userHandler(w http.ResponseWriter, r *http.Request) {
 	var query = db.QueryRow("SELECT * FROM labaiepierre.user WHERE ID=" + strconv.Itoa(usr.ID))
 	var user User
 	query.Scan(&user.ID, &user.Name, &user.Firstname, &user.Password, &user.Email, &user.PP, user.Birthday)
-	fmt.Println("ta grosse darone", user)
+	fmt.Println(user)
 	a, _ := json.Marshal(user)
 	w.Write(a)
 
